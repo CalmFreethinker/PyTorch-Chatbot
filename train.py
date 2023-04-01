@@ -1,3 +1,4 @@
+'''running the training data through neural network'''
 import json
 from nltk_utils import tokenize, stem, bag_of_words
 import numpy as np
@@ -30,6 +31,7 @@ tags = sorted(set(tags))  #adds unique labels (not necessary but do it in to be 
 
 X_train = []
 y_train = []
+#Getting the token and tag
 for (pattern_sentence, tag) in xy:
     bag = bag_of_words(pattern_sentence, all_words) 
     X_train.append(bag)
@@ -40,17 +42,17 @@ for (pattern_sentence, tag) in xy:
 X_train = np.array(X_train)
 y_train = np.array(y_train)
 
-
+#for debugging purposes
 class ChatDataset(Dataset):
     def __init__(self):
         self.n_samples = len(X_train)
         self.x_data = X_train
         self.y_data = y_train
 
-    #dataset[isx]
+    #Go through the dataset
     def __getitem__(self,index):
         return self.x_data[index], self.y_data[index]
-
+    #check the length of the dataset
     def __len__(self):
         return self.n_samples
 
