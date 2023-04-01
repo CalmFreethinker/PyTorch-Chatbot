@@ -1,7 +1,8 @@
+'''A program to break sentences into a word list using the bag of words model. Then, it removes suffixes with results used for a chatbot'''
+#RegEx package
 from re import A
 import nltk
 import numpy as np
-##nltk.download('punkt')
 from nltk.stem.porter import PorterStemmer
 stemmer = PorterStemmer()
 
